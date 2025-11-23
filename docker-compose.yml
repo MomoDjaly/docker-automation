@@ -1,0 +1,28 @@
+services:
+  web:
+    image: nginx:latest
+    container_name: web_nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - reseau_interne
+
+  db:
+    image: postgres:15
+    container_name: db_postgres
+    environment:
+      POSTGRES_USER: momo
+      POSTGRES_PASSWORD: BONJOURS
+      POSTGRES_DB: momo_db
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - reseau_interne
+
+networks:
+  reseau_interne:
+
+volumes:
+  dbdata:
