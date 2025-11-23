@@ -16,13 +16,13 @@ Le script permet de :
 
 Rendre le script éxécutable:
 
-"chmod +x stack.sh"
+chmod +x stack.sh
 
 Puis utiliser l'unde des commandes suivantes :
 
 ### Démarrer la stack
 
-"./stack.sh start"
+./stack.sh start
 
 ### Arrêter la stack
 
@@ -38,7 +38,7 @@ Puis utiliser l'unde des commandes suivantes :
 
 Exemple= "./stack.sh logs web"
 
-###Redémarrer un service
+### Redémarrer un service
 
 ./stack.sh restart <service>
 
