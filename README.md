@@ -12,7 +12,7 @@ Le script permet de :
   - Consulter les logs d'un service
   - Rédémarrer un service spécifique
 
-##Utilisation
+## Utilisation
 
 Rendre le script éxécutable:
 
