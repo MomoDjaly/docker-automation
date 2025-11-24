@@ -60,6 +60,22 @@ case "$1" in
     docker-compose restart $2
     ;;
 
+  health)
+   echo -e "${BLUE} vérification de l'état des services...${NC}"
+   docker-compose ps --format "table {{.Name}}\t{{.State}}\t{{.Status}}"
+   ;;
+
+  info)
+    echo -e "${GREEN} Informations sur la stack :${NC}"
+    docker-compose ps
+    echo ""
+    echo -e "${YELLOW} Réseaux Docker :${NC}"
+    docker network ls
+    echo ""
+    echo -e "${BLUE} Image utilisées :${NC}"
+    docker images
+    ;;
+
   *)
     echo -e "${YELLOW}Commandes disponibles :${NC}"
     echo "./stack.sh start"
@@ -67,6 +83,9 @@ case "$1" in
     echo "./stach.sh status"
     echo "./stack.sh logs <service>"
     echo "./stack.sh restart <service>"
+    echo "./stack.sh health"
+    echo ".stack.sh info"
     exit 1
    ;;
+
 esac

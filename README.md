@@ -16,9 +16,10 @@ Le script permet de :
 
 Rendre le script éxécutable:
 
-chmod +x stack.sh
+"chmod +x stack.sh"
 
-Puis utiliser l'unde des commandes suivantes :
+Puis utiliser l'une des commandes suivantes :
+
 
 ### Démarrer la stack
 
@@ -41,6 +42,14 @@ Exemple= "./stack.sh logs web"
 ### Redémarrer un service
 
 ./stack.sh restart <service>
+
+### Vérifier la santé de la stack
+
+./stack.sh health
+
+### Obtenir des informations sur la stack
+
+./stack.sh info
 
 
 
