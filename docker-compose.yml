@@ -13,8 +13,8 @@ services:
     image: postgres:15
     container_name: db_postgres
     environment:
-      POSTGRES_USER: momo
-      POSTGRES_PASSWORD: BONJOURS
+      POSTGRES_USER: U$£R
+      POSTGRES_PASSWORD: P@$$w0rD
       POSTGRES_DB: momo_db
     volumes:
       - dbdata:/var/lib/postgresql/data
