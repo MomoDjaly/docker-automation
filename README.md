@@ -9,6 +9,7 @@ Ce projet contient une stack Docker complète (Nginx + PostgreSQL) ainsi qu’un
 - **stack.sh** (script Bash d’automatisation)
 - **README.md**
 
+
 ## Fonctionnalités
 Le script permet de :
 
