@@ -7,10 +7,10 @@ L’objectif est d’apprendre à gérer Docker et Docker Compose comme un admin
 
 
 ## Contenu du projet
-	•	docker-compose.yml
-	•	.env (variables d’environnement)
-	•	stack.sh (script Bash d’automatisation)
-	•	README.md
+	- docker-compose.yml
+	- .env (variables d’environnement)
+	- stack.sh (script Bash d’automatisation)
+	- README.md
 
 
 ## Architecture du projet
