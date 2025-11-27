@@ -1,32 +1,52 @@
-# Docker Automation – Stack Web + PostgreSQL
+# Docker Automation – Stack Web + PostgreSQL + Script d’Administration
 
-Ce projet contient une stack Docker complète (Nginx + PostgreSQL) ainsi qu’un script Bash d’automatisation permettant de gérer les services comme un administrateur système professionnel.
+Ce projet met en place une stack Docker professionnelle composée d’un service Nginx et d’une base de données PostgreSQL.
+La stack est entièrement configurable via un fichier .env et contrôlée par un script Bash permettant d’automatiser les tâches d’administration.
 
-## 🧩 Contenu du projet
-
-- **docker-compose.yml**
-- **.env** (variables d’environnement : ports, mots de passe…)
-- **stack.sh** (script Bash d’automatisation)
-- **README.md**
+L’objectif est d’apprendre à gérer Docker et Docker Compose comme un administrateur système ou DevOps junior.
 
 
-## Fonctionnalités
-Le script permet de :
+## Contenu du projet
+	•	docker-compose.yml
+	•	.env (variables d’environnement)
+	•	stack.sh (script Bash d’automatisation)
+	•	README.md
 
-  - Démarrer la stack
-  - Arrêter la stack
-  - Afficher l'état des conteneurs
-  - Consulter les logs d'un service
-  - Rédémarrer un service spécifique
 
-## Utilisation
+## Architecture du projet
 
-Rendre le script éxécutable:
+### 1. Service Web (Nginx)
+	•	Port expose : ${WEB_PORT}:80
+	•	Sert un site statique depuis /usr/share/nginx/html
+	•	Configurable via le fichier .env
 
-"chmod +x stack.sh"
+### 2. Base de données (PostgreSQL)
+	•	Variables d’environnement : POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB
+	•	Données persistées via un volume Docker
 
-Puis utiliser l'une des commandes suivantes :
+### 3. Réseau Docker interne
 
+Les services communiquent via un réseau privé créé automatiquement par Docker Compose.
+
+### Fichier .env
+
+Le fichier .env permet de modifier la configuration de la stack sans modifier le fichier docker-compose.yml.
+
+Exemple :
+
+WEB_PORT=8080
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=admin123
+POSTGRES_DB=appdb
+
+Changer une valeur puis relancer la stack applique automatiquement la configuration mise à jour.
+
+
+## Utilisation du script stack.sh
+
+### Rendre le script exécutable
+
+chmod +x stack.sh
 
 ### Démarrer la stack
 
@@ -40,41 +60,62 @@ Puis utiliser l'une des commandes suivantes :
 
 ./stack.sh status
 
-### Voir les logs d'un service
+### Consulter les logs d’un service
 
-./stack.sh logs <service>
+./stack.sh logs web
+./stack.sh logs db
 
-Exemple= "./stack.sh logs web"
+### Redémarrer un service spécifique
 
-### Redémarrer un service
-
-./stack.sh restart <service>
+./stack.sh restart web
 
 ### Vérifier la santé de la stack
 
 ./stack.sh health
 
-### Obtenir des informations sur la stack
+### Informations globales
 
 ./stack.sh info
 
 
 
-## Préréquis
+### Accès au site web
 
-  - Docker
-  - Docker Compose
-  - Linux/WSL/Ubuntu
+Dans le navigateur :
 
-Pour tester :
+http://localhost:${WEB_PORT}
 
-'bash
+Exemple si WEB_PORT=8080 :
 
-docker --version
+http://localhost:8080
 
-docker compose version
+### Nettoyage des ressources inutilisées
 
-## Auteur et but du projet
+Pour garder l’environnement propre :
 
-Mohamed Djalil DIABAGATE Étudiant en BTS SIO
-Projet réalisé dans le cadre d'un apprentissage Docker et Compose
+docker container prune -f
+docker volume prune -f
+docker network prune -f
+docker image prune -f
+
+
+## Objectif du projet
+
+Ce projet permet de consolider les compétences suivantes :
+	•	Docker et Docker Compose
+	•	Gestion d’une stack web + base de données
+	•	Automatisation par script Bash
+	•	Utilisation de variables d’environnement
+	•	Compréhension des réseaux Docker
+	•	Création d’environnements reproductibles et configurables
+
+Il constitue un projet solide pour un portfolio visant une alternance en administration système, réseau ou DevOps.
+
+
+Auteur
+
+Mohamed Djalil DIABAGATE
+Étudiant en BTS SIO
+Projet réalisé pour l’apprentissage de Docker, Docker Compose et des outils d’automatisation.
+
+
