@@ -1,7 +1,13 @@
-# Docker Stack Automatisation
+# Docker Automation – Stack Web + PostgreSQL
 
-Ce projet permet d'automatiser la gestion d'une stack **Docker Compose** à l'aide d'un script Bash ('stack.sh').
+Ce projet contient une stack Docker complète (Nginx + PostgreSQL) ainsi qu’un script Bash d’automatisation permettant de gérer les services comme un administrateur système professionnel.
 
+## 🧩 Contenu du projet
+
+- **docker-compose.yml**
+- **.env** (variables d’environnement : ports, mots de passe…)
+- **stack.sh** (script Bash d’automatisation)
+- **README.md**
 
 ## Fonctionnalités
 Le script permet de :
@@ -58,6 +64,14 @@ Exemple= "./stack.sh logs web"
   - Docker
   - Docker Compose
   - Linux/WSL/Ubuntu
+
+Pour tester :
+
+'bash
+
+docker --version
+
+docker compose version
 
 ## Auteur et but du projet
 
