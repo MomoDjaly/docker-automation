@@ -35,8 +35,11 @@ Le fichier .env permet de modifier la configuration de la stack sans modifier le
 Exemple :
 
 WEB_PORT=8080
+
 POSTGRES_USER=admin
+
 POSTGRES_PASSWORD=admin123
+
 POSTGRES_DB=appdb
 
 Changer une valeur puis relancer la stack applique automatiquement la configuration mise à jour.
