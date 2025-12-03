@@ -15,6 +15,12 @@ YELLOW="\e[33m"
 BLUE="\e[34m"
 NC="\e[0m" # No Color
 
+
+
+VOLUME_NAME="projet-compose_dbdata"    # 💡 Mets ici le nom EXACT de ton volume PostgreSQL
+BACKUP_DIR="./backups"
+mkdir -p $BACKUP_DIR
+
 #Vérification: un permier argument est obligatoire
 
 if [ -z "$1" ]; then
@@ -74,6 +80,37 @@ case "$1" in
     echo ""
     echo -e "${BLUE} Image utilisées :${NC}"
     docker images
+    ;;
+    
+    
+  backup)
+    TIMESTAMP=$(date +"%Y%m%d_%H%M")
+    FILE="$BACKUP_DIR/backup_$TIMESTAMP.tar.gz"
+
+    info "Backup du volume : $VOLUME_NAME"
+    docker run --rm \
+      -v $VOLUME_NAME:/data \
+      -v $(pwd)/$BACKUP_DIR:/backup \
+      alpine sh -c "cd /data && tar czf /backup/backup_$TIMESTAMP.tar.gz ."
+
+    ok "Backup terminé : $FILE"
+    ;;
+
+  restore)
+    if [ -z "$2" ]; then
+      err "Tu dois donner un fichier : ./stack.sh restore backups/xxx.tar.gz"
+      exit 1
+    fi
+
+    FILE="$2"
+    info "Restore du volume $VOLUME_NAME depuis $FILE"
+
+    docker run --rm \
+      -v $VOLUME_NAME:/data \
+      -v $(pwd):/backup \
+      alpine sh -c "cd /data && rm -rf * && tar xzf /backup/$FILE"
+
+    ok "Restore terminé."
     ;;
 
   *)
